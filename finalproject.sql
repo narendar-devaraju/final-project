@@ -66,8 +66,8 @@ CREATE TABLE BUSINESS(
     address VARCHAR(255),
     phone VARCHAR(50),
     business_email VARCHAR(100),
-    lat VARCHAR(50),
-    _long VARCHAR(50),
+    location_lat VARCHAR(50),
+    location_long VARCHAR(50),
     banner_image BLOB,
     PRIMARY KEY(business_id),
     FOREIGN KEY(category_id) REFERENCES CATEGORY(category_id),
@@ -107,7 +107,7 @@ CREATE TABLE OFFERS(
     offer_detail VARCHAR(255),
     offer_start_time DATETIME,
     offer_end_time DATETIME,
-    isActive BOOLEAN,
+    is_Active BOOLEAN,
     PRIMARY KEY(offer_id),
     FOREIGN KEY(business_id) REFERENCES BUSINESS(business_id)
 );
