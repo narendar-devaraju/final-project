@@ -1,7 +1,13 @@
+-- To make sure there doesnot exist a duplicate database
 drop database if exists local_business;
+
+-- To create a databse local_business
 create database local_business;
 
+-- To use the database local_business
 use local_business;
+
+-- Table to store business categories
 CREATE TABLE CATEGORY(
 	category_id INT,
     category_name VARCHAR(50),
@@ -9,6 +15,7 @@ CREATE TABLE CATEGORY(
     PRIMARY KEY(category_id)
 );
 
+-- Table to store business subcategories with reference to the CATEGORY table
 CREATE TABLE SUBCATEGORY(
 	subcategory_id INT,
     subcategory_name VARCHAR(50),
@@ -18,6 +25,7 @@ CREATE TABLE SUBCATEGORY(
     FOREIGN KEY(category_id) REFERENCES CATEGORY(category_id)
 );
 
+-- Table to store countries
 CREATE TABLE COUNTRY(
 	country_id INT,
     country_name VARCHAR(100),
@@ -25,6 +33,7 @@ CREATE TABLE COUNTRY(
     PRIMARY KEY(country_id)
 );
 
+-- Table to store states with reference to the COUNTRY table
 CREATE TABLE STATES(
 	state_id INT,
     state_name VARCHAR(100),
@@ -34,6 +43,7 @@ CREATE TABLE STATES(
     FOREIGN KEY(country_id) REFERENCES COUNTRY(country_id)
 );
 
+-- Table to store cities with references to COUNTRY and STATES tables
 CREATE TABLE CITY(
 	city_id INT,
     city_name VARCHAR(100),
@@ -45,7 +55,7 @@ CREATE TABLE CITY(
     FOREIGN KEY(state_id) REFERENCES STATES(state_id)
 );
 
-
+-- Table to store business with references to CATEGORY, SUBCATEGORY AND CITY tables
 CREATE TABLE BUSINESS(
     business_id	INT,
     business_name VARCHAR(100),
@@ -65,6 +75,7 @@ CREATE TABLE BUSINESS(
     FOREIGN KEY(city_id) REFERENCES CITY(city_id)
 );
 
+-- Table to store business owners data with reference to BUSINESS table
 CREATE TABLE OWNERS(
 	owner_id INT,
     business_id	INT,
@@ -74,9 +85,11 @@ CREATE TABLE OWNERS(
     FOREIGN KEY(business_id) REFERENCES BUSINESS(business_id)
 );
 
+-- Altering the BUSINESS table to add Foreign key constraint referencing OWNERS table
 ALTER TABLE BUSINESS
 ADD FOREIGN KEY(owner_id) REFERENCES OWNERS(owner_id);
 
+-- Table to store feedback for businesses with reference to BUSINESS table
 CREATE TABLE FEEDBACK(
 	feedback_id INT,
     business_id	INT,
@@ -86,6 +99,7 @@ CREATE TABLE FEEDBACK(
     FOREIGN KEY(business_id) REFERENCES BUSINESS(business_id)
 );
 
+-- Table to store offers for businesses with reference to BUSINESS table
 CREATE TABLE OFFERS(
 	offer_id INT,
     business_id	INT,
