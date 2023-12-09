@@ -1,11 +1,11 @@
 -- To make sure there doesnot exist a duplicate database
-drop database if exists local_business;
+drop database if exists business_directory;
 
--- To create a databse local_business
-create database local_business;
+-- To create a databse business_directory
+create database business_directory;
 
--- To use the database local_business
-use local_business;
+-- To use the database business_directory
+use business_directory;
 
 -- Table to store business categories
 CREATE TABLE CATEGORY(
